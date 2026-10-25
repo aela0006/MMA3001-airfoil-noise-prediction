@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module comparison</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">comparison</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/airfoil_noise_work/airfoil_noise/comparison.py">/mnt/data/airfoil_noise_work/airfoil_noise/comparison.py</a></td></tr></table>
+    <p><span class="code">Compare&nbsp;the&nbsp;trained&nbsp;MLP&nbsp;against&nbsp;simple&nbsp;regression&nbsp;baselines.<br>
+&nbsp;<br>
+The&nbsp;script&nbsp;reuses&nbsp;the&nbsp;model&nbsp;bundle&nbsp;and&nbsp;its&nbsp;saved&nbsp;80/20&nbsp;split&nbsp;from&nbsp;``train.py``.<br>
+Both&nbsp;baseline&nbsp;estimators&nbsp;are&nbsp;fitted&nbsp;using&nbsp;only&nbsp;the&nbsp;training&nbsp;partition,&nbsp;then&nbsp;all<br>
+models&nbsp;are&nbsp;evaluated&nbsp;on&nbsp;the&nbsp;same&nbsp;untouched&nbsp;test&nbsp;partition.&nbsp;Results&nbsp;and&nbsp;plots<br>
+are&nbsp;saved&nbsp;under&nbsp;``outputs/comparison/``&nbsp;for&nbsp;reproducibility&nbsp;and&nbsp;reporting.<br>
+&nbsp;<br>
+Run&nbsp;from&nbsp;the&nbsp;project&nbsp;root&nbsp;with::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;python&nbsp;comparison.py</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="hashlib.html">hashlib</a><br>
+<a href="joblib.html">joblib</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="warnings.html">warnings</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-build_baseline_models"><strong>build_baseline_models</strong></a>() -&gt; 'dict[str, Any]'</dt><dd><span class="code">Create&nbsp;baseline&nbsp;estimators;&nbsp;callers&nbsp;fit&nbsp;them&nbsp;on&nbsp;training&nbsp;data&nbsp;only.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict[str,&nbsp;estimator]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;training-target-mean&nbsp;predictor&nbsp;and&nbsp;a&nbsp;standardised&nbsp;ordinary&nbsp;least<br>
+&nbsp;&nbsp;&nbsp;&nbsp;squares&nbsp;regression&nbsp;model.&nbsp;StandardScaler&nbsp;is&nbsp;fitted&nbsp;within&nbsp;the&nbsp;training<br>
+&nbsp;&nbsp;&nbsp;&nbsp;partition&nbsp;by&nbsp;the&nbsp;pipeline,&nbsp;preventing&nbsp;preprocessing&nbsp;leakage.</span></dd></dl>
+ <dl><dt><a name="-evaluate_models"><strong>evaluate_models</strong></a>(
+    fitted_mlp: 'Any',
+    baseline_models: 'dict[str, Any]',
+    X_train: 'pd.DataFrame',
+    y_train: 'pd.Series',
+    X_test: 'pd.DataFrame',
+    y_test: 'pd.Series | np.ndarray'
+) -&gt; 'tuple[pd.DataFrame, pd.DataFrame]'</dt><dd><span class="code">Fit&nbsp;baselines&nbsp;and&nbsp;evaluate&nbsp;every&nbsp;estimator&nbsp;on&nbsp;the&nbsp;same&nbsp;held-out&nbsp;test&nbsp;set.<br>
+&nbsp;<br>
+The&nbsp;supplied&nbsp;MLP&nbsp;is&nbsp;already&nbsp;trained&nbsp;by&nbsp;``train.py``.&nbsp;Baselines&nbsp;are&nbsp;fitted<br>
+here&nbsp;using&nbsp;training&nbsp;rows&nbsp;only.&nbsp;No&nbsp;estimator&nbsp;is&nbsp;fitted&nbsp;on&nbsp;test&nbsp;targets.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple[pandas.DataFrame,&nbsp;pandas.DataFrame]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;metrics&nbsp;table&nbsp;and&nbsp;a&nbsp;prediction&nbsp;table,&nbsp;each&nbsp;with&nbsp;one&nbsp;row&nbsp;per&nbsp;test&nbsp;case<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;latter&nbsp;and&nbsp;one&nbsp;row&nbsp;per&nbsp;model&nbsp;in&nbsp;the&nbsp;former.</span></dd></dl>
+ <dl><dt><a name="-load_project_data"><strong>load_project_data</strong></a>(
+    model_file: 'Path' = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models/airfoil_nn.joblib')
+) -&gt; 'tuple[dict[str, Any], pd.DataFrame, Path, np.ndarray, np.ndarray]'</dt><dd><span class="code">Load&nbsp;the&nbsp;trained&nbsp;model&nbsp;and&nbsp;verify&nbsp;its&nbsp;dataset&nbsp;and&nbsp;split&nbsp;metadata.<br>
+&nbsp;<br>
+The&nbsp;dataset&nbsp;checksum&nbsp;must&nbsp;match&nbsp;the&nbsp;checksum&nbsp;stored&nbsp;by&nbsp;``train.py``.&nbsp;This<br>
+protects&nbsp;the&nbsp;comparison&nbsp;from&nbsp;silently&nbsp;using&nbsp;a&nbsp;replaced&nbsp;or&nbsp;reordered&nbsp;file.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+FileNotFoundError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;trained&nbsp;model&nbsp;bundle&nbsp;or&nbsp;input&nbsp;dataset&nbsp;is&nbsp;missing.<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;dataset&nbsp;checksum,&nbsp;schema,&nbsp;or&nbsp;stored&nbsp;split&nbsp;is&nbsp;inconsistent.</span></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>(show_plots: 'bool' = True) -&gt; 'None'</dt><dd><span class="code">Run&nbsp;the&nbsp;held-out&nbsp;comparison&nbsp;and&nbsp;save&nbsp;reproducible&nbsp;outputs.</span></dd></dl>
+ <dl><dt><a name="-save_comparison_outputs"><strong>save_comparison_outputs</strong></a>(
+    metrics: 'pd.DataFrame',
+    predictions: 'pd.DataFrame',
+    output_dir: 'Path' = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/outputs/comparison')
+) -&gt; 'tuple[Path, Path, Path, Path]'</dt><dd><span class="code">Save&nbsp;metric/prediction&nbsp;CSVs&nbsp;and&nbsp;comparison&nbsp;plots&nbsp;for&nbsp;reporting.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple[pathlib.Path,&nbsp;pathlib.Path,&nbsp;pathlib.Path,&nbsp;pathlib.Path]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Paths&nbsp;to&nbsp;the&nbsp;metrics&nbsp;CSV,&nbsp;prediction&nbsp;CSV,&nbsp;metric&nbsp;PNG,&nbsp;and&nbsp;prediction&nbsp;PNG.</span></dd></dl>
+ <dl><dt><a name="-validate_split_indices"><strong>validate_split_indices</strong></a>(
+    n_rows: 'int',
+    train_idx: 'np.ndarray',
+    test_idx: 'np.ndarray'
+) -&gt; 'None'</dt><dd><span class="code">Validate&nbsp;that&nbsp;train/test&nbsp;indices&nbsp;form&nbsp;a&nbsp;complete,&nbsp;disjoint&nbsp;row&nbsp;split.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n_rows&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;observations&nbsp;in&nbsp;the&nbsp;loaded&nbsp;dataset.<br>
+train_idx,&nbsp;test_idx&nbsp;:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;row&nbsp;indices&nbsp;stored&nbsp;in&nbsp;the&nbsp;trained&nbsp;model&nbsp;bundle.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;indices&nbsp;are&nbsp;empty,&nbsp;duplicated,&nbsp;out&nbsp;of&nbsp;bounds,&nbsp;overlap,&nbsp;or&nbsp;do&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cover&nbsp;every&nbsp;dataset&nbsp;row&nbsp;exactly&nbsp;once.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>FEATURES</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m']<br>
+<strong>LINEAR_LABEL</strong> = 'Linear regression'<br>
+<strong>MEAN_LABEL</strong> = 'Training-mean baseline'<br>
+<strong>MLP_LABEL</strong> = 'MLP neural network'<br>
+<strong>MODEL_FILE</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models/airfoil_nn.joblib')<br>
+<strong>OUTPUT_DIR</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/outputs/comparison')<br>
+<strong>ROOT</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise')<br>
+<strong>TARGET</strong> = 'sound_pressure_level_db'</td></tr></table>
+</body></html>

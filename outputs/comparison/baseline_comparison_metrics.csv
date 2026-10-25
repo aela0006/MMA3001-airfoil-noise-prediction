@@ -1,0 +1,4 @@
+model,mae_db,rmse_db,r2
+MLP neural network,1.11198643,1.48435123,0.95602074
+Linear regression,3.67241456,4.70410919,0.55829798
+Training-mean baseline,5.79174006,7.08099758,-0.00083732

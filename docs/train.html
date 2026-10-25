@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module train</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">train</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/airfoil_noise_work/airfoil_noise/train.py">/mnt/data/airfoil_noise_work/airfoil_noise/train.py</a></td></tr></table>
+    <p><span class="code">Train&nbsp;an&nbsp;MLP&nbsp;neural&nbsp;network&nbsp;for&nbsp;the&nbsp;UCI&nbsp;Airfoil&nbsp;Self-Noise&nbsp;dataset.<br>
+&nbsp;<br>
+Input:&nbsp;data/airfoil_self_noise.dat&nbsp;(raw,&nbsp;whitespace-separated,&nbsp;6&nbsp;columns,&nbsp;no&nbsp;header).<br>
+Split:&nbsp;80%&nbsp;training&nbsp;/&nbsp;20%&nbsp;untouched&nbsp;test.&nbsp;validation.py&nbsp;performs&nbsp;5-fold&nbsp;CV&nbsp;within&nbsp;the&nbsp;80%.<br>
+Plots&nbsp;are&nbsp;displayed&nbsp;interactively;&nbsp;no&nbsp;plots,&nbsp;CSVs,&nbsp;JSONs,&nbsp;or&nbsp;reports&nbsp;are&nbsp;saved.<br>
+Only&nbsp;the&nbsp;fitted&nbsp;model&nbsp;and&nbsp;split&nbsp;indices&nbsp;are&nbsp;saved&nbsp;in&nbsp;models/&nbsp;so&nbsp;the&nbsp;other&nbsp;scripts&nbsp;can&nbsp;reuse&nbsp;them.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="hashlib.html">hashlib</a><br>
+<a href="joblib.html">joblib</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="warnings.html">warnings</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-build_model"><strong>build_model</strong></a>()</dt><dd><span class="code">Input&nbsp;and&nbsp;target&nbsp;scaling&nbsp;are&nbsp;fitted&nbsp;only&nbsp;on&nbsp;rows&nbsp;supplied&nbsp;to&nbsp;model.fit.</span></dd></dl>
+ <dl><dt><a name="-load_dataset"><strong>load_dataset</strong></a>()</dt><dd><span class="code">Read&nbsp;the&nbsp;original&nbsp;.dat&nbsp;file;&nbsp;allow&nbsp;it&nbsp;in&nbsp;project&nbsp;root&nbsp;for&nbsp;convenience&nbsp;too.</span></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><span class="code">Train&nbsp;the&nbsp;neural&nbsp;network,&nbsp;save&nbsp;the&nbsp;model&nbsp;bundle,&nbsp;and&nbsp;show&nbsp;diagnostics.</span></dd></dl>
+ <dl><dt><a name="-metric_summary"><strong>metric_summary</strong></a>(actual, predicted)</dt><dd><span class="code">Calculate&nbsp;prediction&nbsp;errors&nbsp;in&nbsp;the&nbsp;target's&nbsp;decibel&nbsp;units.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+actual,&nbsp;predicted&nbsp;:&nbsp;array-like<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Measured&nbsp;and&nbsp;predicted&nbsp;sound-pressure&nbsp;levels&nbsp;with&nbsp;matching&nbsp;lengths.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict[str,&nbsp;float]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;absolute&nbsp;error,&nbsp;root&nbsp;mean&nbsp;squared&nbsp;error,&nbsp;and&nbsp;coefficient&nbsp;of&nbsp;determination.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>COLUMNS</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m', 'sound_pressure_level_db']<br>
+<strong>DATA_DIR</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/data')<br>
+<strong>DATA_FILE</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/data/airfoil_self_noise.dat')<br>
+<strong>FEATURES</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m']<br>
+<strong>MODEL_DIR</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models')<br>
+<strong>MODEL_FILE</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models/airfoil_nn.joblib')<br>
+<strong>ROOT</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise')<br>
+<strong>TARGET</strong> = 'sound_pressure_level_db'</td></tr></table>
+</body></html>

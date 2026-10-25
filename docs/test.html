@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module test</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">test</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/airfoil_noise_work/airfoil_noise/test.py">/mnt/data/airfoil_noise_work/airfoil_noise/test.py</a></td></tr></table>
+    <p><span class="code">Final&nbsp;20%&nbsp;test&nbsp;evaluation&nbsp;and&nbsp;interactive&nbsp;physics&nbsp;investigations.<br>
+No&nbsp;PNGs,&nbsp;CSVs,&nbsp;JSONs,&nbsp;or&nbsp;reports&nbsp;are&nbsp;written.&nbsp;Plots&nbsp;are&nbsp;shown&nbsp;by&nbsp;matplotlib.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="hashlib.html">hashlib</a><br>
+<a href="joblib.html">joblib</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="warnings.html">warnings</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-load_dataset"><strong>load_dataset</strong></a>(bundle)</dt><dd><span class="code">Load&nbsp;the&nbsp;raw&nbsp;dataset&nbsp;and&nbsp;confirm&nbsp;its&nbsp;checksum&nbsp;matches&nbsp;the&nbsp;saved&nbsp;bundle.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+bundle&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Trained&nbsp;model&nbsp;metadata&nbsp;containing&nbsp;the&nbsp;original&nbsp;dataset&nbsp;checksum.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+pandas.DataFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Validated&nbsp;dataset&nbsp;with&nbsp;five&nbsp;input&nbsp;features&nbsp;and&nbsp;the&nbsp;target&nbsp;column.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+FileNotFoundError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;source&nbsp;dataset&nbsp;is&nbsp;missing.<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;data&nbsp;differs&nbsp;from&nbsp;training&nbsp;data&nbsp;or&nbsp;contains&nbsp;invalid&nbsp;values.</span></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><span class="code">Evaluate&nbsp;once&nbsp;on&nbsp;the&nbsp;untouched&nbsp;test&nbsp;partition&nbsp;and&nbsp;show&nbsp;diagnostics.</span></dd></dl>
+ <dl><dt><a name="-model_grid"><strong>model_grid</strong></a>(
+    model,
+    baseline,
+    variable,
+    values,
+    second_variable=None,
+    second_values=None
+)</dt><dd><span class="code">Predict&nbsp;across&nbsp;one&nbsp;input;&nbsp;optionally&nbsp;hold&nbsp;a&nbsp;second&nbsp;input&nbsp;at&nbsp;a&nbsp;chosen&nbsp;value.</span></dd></dl>
+ <dl><dt><a name="-report_plot"><strong>report_plot</strong></a>(number, title, what, interpretation)</dt><dd><span class="code">Print&nbsp;a&nbsp;short&nbsp;plain-language&nbsp;guide&nbsp;to&nbsp;an&nbsp;interactive&nbsp;diagnostic&nbsp;plot.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>COLUMNS</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m', 'sound_pressure_level_db']<br>
+<strong>DATA_DIR</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/data')<br>
+<strong>DISPLAY</strong> = {'angle_of_attack_deg': 'Angle of attack (degrees)', 'chord_length_m': 'Chord length (m)', 'free_stream_velocity_m_s': 'Free-stream velocity (m/s)', 'frequency_hz': 'Frequency (Hz)', 'suction_side_displacement_thickness_m': 'Suction-side displacement thickness (m)'}<br>
+<strong>FEATURES</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m']<br>
+<strong>MODEL_FILE</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models/airfoil_nn.joblib')<br>
+<strong>ROOT</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise')<br>
+<strong>TARGET</strong> = 'sound_pressure_level_db'</td></tr></table>
+</body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module validation</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">validation</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/airfoil_noise_work/airfoil_noise/validation.py">/mnt/data/airfoil_noise_work/airfoil_noise/validation.py</a></td></tr></table>
+    <p><span class="code">Validation&nbsp;via&nbsp;5-fold&nbsp;cross-validation&nbsp;within&nbsp;the&nbsp;80%&nbsp;training&nbsp;partition.<br>
+Plots&nbsp;are&nbsp;shown&nbsp;on&nbsp;screen&nbsp;and&nbsp;not&nbsp;written&nbsp;to&nbsp;disk.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="hashlib.html">hashlib</a><br>
+<a href="joblib.html">joblib</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="warnings.html">warnings</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-load_dataset"><strong>load_dataset</strong></a>(bundle)</dt><dd><span class="code">Load&nbsp;the&nbsp;raw&nbsp;data&nbsp;and&nbsp;verify&nbsp;it&nbsp;matches&nbsp;the&nbsp;saved&nbsp;training&nbsp;checksum.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+bundle&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Model&nbsp;metadata&nbsp;produced&nbsp;by&nbsp;``train.py``;&nbsp;must&nbsp;contain&nbsp;``dataset_sha256``.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+pandas.DataFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Validated&nbsp;six-column&nbsp;dataset&nbsp;in&nbsp;the&nbsp;project's&nbsp;fixed&nbsp;column&nbsp;order.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+FileNotFoundError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;source&nbsp;dataset&nbsp;is&nbsp;missing.<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;dataset&nbsp;checksum,&nbsp;shape,&nbsp;or&nbsp;values&nbsp;are&nbsp;invalid.</span></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><span class="code">Run&nbsp;five-fold&nbsp;cross-validation&nbsp;using&nbsp;only&nbsp;the&nbsp;saved&nbsp;training&nbsp;partition.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>COLUMNS</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m', 'sound_pressure_level_db']<br>
+<strong>DATA_DIR</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/data')<br>
+<strong>FEATURES</strong> = ['frequency_hz', 'angle_of_attack_deg', 'chord_length_m', 'free_stream_velocity_m_s', 'suction_side_displacement_thickness_m']<br>
+<strong>MODEL_FILE</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise/models/airfoil_nn.joblib')<br>
+<strong>ROOT</strong> = PosixPath('/mnt/data/airfoil_noise_work/airfoil_noise')<br>
+<strong>TARGET</strong> = 'sound_pressure_level_db'</td></tr></table>
+</body></html>
